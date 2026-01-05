@@ -43,7 +43,7 @@ jobs:
       - name: Checkout repository (main)
         uses: actions/checkout@v4
         with:
-          ref: mainD
+          ref: main
           path: checkoutDir
 
       - name: Prepare and Copy to Mount Point
