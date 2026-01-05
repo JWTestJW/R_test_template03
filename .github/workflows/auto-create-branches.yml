@@ -26,7 +26,7 @@ jobs:
 
     # リポジトリ名に 'template' が含まれず、（テンプレート除外）
     # かつ初回実行時（または手動実行時）のみ動作
-    if: |
+    if: >-
       !contains(github.event.repository.name, 'template') &&
       (github.run_number == 1 || github.event_name == 'workflow_dispatch')
 

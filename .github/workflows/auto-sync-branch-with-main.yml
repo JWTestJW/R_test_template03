@@ -40,7 +40,7 @@ jobs:
   sync-branches:
     # 対象ブランチ名は 'dev' 固定
     # env.TARGET_BRANCH は job.if からは使えない
-    if: |
+    if: >-
       github.event_name == 'workflow_dispatch' ||
       (
         github.event.pull_request.merged == true &&
@@ -96,7 +96,7 @@ jobs:
           fi
 
       - name: Skip - file contents differ
-        if: |
+        if: >-
           steps.check_file.outputs.file_diff == 'true' &&
           github.event.inputs.continue_on_file_diff != 'true'
         run: |
@@ -105,7 +105,7 @@ jobs:
           exit 0
 
       - name: Merge main into dev
-        if: |
+        if: >-
           steps.check_file.outputs.file_diff == 'false' ||
           github.event.inputs.continue_on_file_diff == 'true'
         run: |
@@ -113,7 +113,7 @@ jobs:
           git merge origin/main --no-ff --allow-unrelated-histories -m "Sync main into dev (auto)"
 
       - name: Push updated target branch
-        if: |
+        if: >-
           steps.check_file.outputs.file_diff == 'false' ||
           github.event.inputs.continue_on_file_diff == 'true'
         run: |
