@@ -26,7 +26,7 @@ on:
       permission:
         description: "権限 (pull/push/triage/maintain/admin)"
         required: true
-        default: "maintain"
+        default: "push"
 
   # テンプレートから生成された新規リポジトリの main への push を想定
   push:
@@ -46,7 +46,7 @@ jobs:
       # repo 名から team_slug を抽出するための正規表現
       # 例: XX_STD0001_for_team01_a → team01_a
       TEAM_FROM_REPO_REGEX: "^.*_for_(.+)$"
-      DEFAULT_PERMISSION: "maintain"
+      DEFAULT_PERMISSION: "push"
       GH_TOKEN: ${{ secrets.ADMIN_TOKEN }}
 
     steps:
