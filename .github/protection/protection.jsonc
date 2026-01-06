@@ -45,7 +45,7 @@
 
   // ===== 誰が push できるかの制限 =====
   "restrictions": {
-    "users": ["jiangtestgm"],      // push を許可する GitHub ユーザー
+    "users": [ "jiangtestgm" ],      // push を許可する GitHub ユーザー
     "teams": [],      // push を許可する Team
     "apps": []        // push を許可する GitHub App
   }
