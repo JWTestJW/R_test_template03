@@ -28,10 +28,13 @@ jobs:
     runs-on: ubuntu-latest # GitHub が用意する Linux 実行環境
 
     # リポジトリ名に 'template' が含まれず、（テンプレート除外）
-    # かつ初回実行時（または手動実行時）のみ動作
+    # かつ、workflow_dispatch（手動）か、workflow_run で成功した場合のみ動作
     if: >-
       !contains(github.event.repository.name, 'template') &&
-      (github.run_number == 1 || github.event_name == 'workflow_dispatch')
+      (
+        github.event_name == 'workflow_dispatch' ||
+        (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+      )
 
     steps:
       # GitHub App を使用して installation token を生成
