@@ -18,8 +18,10 @@ permissions:
 
 on:
   workflow_dispatch: {}
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["Auto Grant Single Team Permission (or Manual)"]
+    types:
+      - completed
 
 jobs:
   protect:
